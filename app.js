@@ -7,8 +7,8 @@ dotenv.config();
 connectDB();
 
 const app = express();
-app.use(cors({ origin: 'http://localhost:5173' }));
-// app.use(cors({ origin: 'https://ecommerce-app-frontend-ruby.vercel.app' }));
+// app.use(cors({ origin: 'http://localhost:5173' }));
+app.use(cors({ origin: 'https://ecommerce-app-frontend-ruby.vercel.app' }));
 
 app.use(express.json());
 app.get("/", (req,res)=>{
