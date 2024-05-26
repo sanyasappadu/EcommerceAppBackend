@@ -1,9 +1,9 @@
 const Product = require('../models/Product');
 
 exports.createProduct = async (req, res) => {
-    const { name, price, description, category, stock } = req.body;
+    const { name, price, description, category, stock, image } = req.body;
     try {
-        const product = new Product({ name, price, description, category, stock });
+        const product = new Product({ name, price, description, category, stock, image });
         await product.save();
         res.status(201).json(product);
     } catch (error) {
