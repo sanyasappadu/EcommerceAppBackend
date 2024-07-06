@@ -3,8 +3,8 @@ const { createOrder, getAllOrders, getOrder} = require('../controllers/orderCont
 const { protect } = require('../middleware/authMiddleware');
 const router = express.Router();
 
-router.post('/:id', createOrder);
-router.get('/', getAllOrders);
-router.get('/:id', getOrder); 
+router.post('/:userId', protect, createOrder);
+router.get('/', protect, getAllOrders);
+router.get('/:id', protect, getOrder); 
 
 module.exports = router;
