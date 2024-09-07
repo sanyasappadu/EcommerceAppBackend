@@ -17,8 +17,8 @@ app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Something broke!');
 });
-app.use(cors({ origin: 'http://localhost:5173' }));
-// app.use(cors({ origin: 'https://ecommerce-app-frontend-ruby.vercel.app' }));
+// app.use(cors({ origin: 'http://localhost:5173' }));
+app.use(cors({ origin: 'https://ecommerce-app-frontend-ruby.vercel.app' }));
 const connect = () => {
     mongoose
       .connect(process.env.MONGO_URI)
