@@ -5,13 +5,16 @@ const userSchema = new mongoose.Schema({
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
+    role: { type: String, enum: ['buyer', 'seller'], default: 'buyer' },
     wishlist: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Product' }],
     cart: [{
         product: { type: mongoose.Schema.Types.ObjectId, ref: 'Product' },
         quantity: { type: Number, default: 1 }
     }],
-    image: { type: String }
-});
+    image: { type: String },
+    addresses: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Address' }],
+    defaultAddress: { type: mongoose.Schema.Types.ObjectId, ref: 'Address', default: null }
+}, { timestamps: true });
 
 userSchema.pre('save', async function (next) {
     if (!this.isModified('password')) return next();
@@ -25,5 +28,4 @@ userSchema.methods.matchPassword = async function (enteredPassword) {
 };
 
 const User = mongoose.model('User', userSchema);
-
 module.exports = User;

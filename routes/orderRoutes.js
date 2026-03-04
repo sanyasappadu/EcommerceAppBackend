@@ -1,10 +1,16 @@
 const express = require('express');
-const { createOrder, getAllOrders, getOrder} = require('../controllers/orderController');
-const { protect } = require('../middleware/authMiddleware');
 const router = express.Router();
+const {
+  createOrder,
+  getMyOrders,
+  getAllOrders,
+  getOrder
+} = require('../controllers/orderController');
+const { protect, buyerOnly } = require('../middleware/authMiddleware');
 
-router.post('/:userId', protect, createOrder);
-router.get('/', protect, getAllOrders);
-router.get('/:id', protect, getOrder); 
+router.post('/',           protect, buyerOnly, createOrder);  // ✅ protect is required
+router.get('/my-orders',   protect, buyerOnly, getMyOrders);
+router.get('/',            protect, getAllOrders);
+router.get('/:id',         protect, getOrder);
 
 module.exports = router;
