@@ -18,7 +18,7 @@ app.use((err, req, res, next) => {
 });
 // app.use(cors({ origin: 'http://localhost:5173' }));
 const allowedOrigins = [
-  'https://ecommerce-app-frontend-ruby.vercel.app',
+  'https://ecommerceappfrontend-liard.vercel.app',
   'http://localhost:5173', // Vite dev
   'http://localhost:3000', // CRA dev
 ];
